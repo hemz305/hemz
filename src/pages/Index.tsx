@@ -171,18 +171,27 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-16 min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-secondary/5">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section id="home" className="pt-16 min-h-screen flex items-center justify-center relative overflow-hidden" style={{background: 'var(--gradient-hero)'}}>
+        {/* Premium background pattern */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="mb-8">
-            <img 
-              src="/lovable-uploads/d2129539-59bf-4747-9b0f-30ad538e164e.png" 
-              alt="Hemanth Kumar B"
-              className="w-48 h-48 rounded-full mx-auto mb-6 object-cover border-4 border-primary/20"
-            />
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <div className="relative inline-block mb-6">
+              <img 
+                src="/lovable-uploads/d2129539-59bf-4747-9b0f-30ad538e164e.png" 
+                alt="Hemanth Kumar B"
+                className="w-48 h-48 rounded-full mx-auto object-cover border-4 border-primary/30 shadow-2xl"
+                style={{boxShadow: 'var(--shadow-glow)'}}
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-accent/20 animate-pulse"></div>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4" style={{background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'}}>
               Hemanth Kumar B
             </h1>
-            <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">
+            <h2 className="text-xl md:text-2xl text-primary/90 mb-6 font-medium">
               Java Developer
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -194,10 +203,10 @@ const Index = () => {
               database operations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" onClick={() => scrollToSection('contact')}>
+              <Button size="lg" onClick={() => scrollToSection('contact')} className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg" style={{boxShadow: 'var(--shadow-premium)'}}>
                 Get In Touch
               </Button>
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="border-primary/30 text-primary hover:bg-primary/10 font-semibold">
                 <Download className="w-4 h-4 mr-2" />
                 Download Resume
               </Button>
@@ -207,10 +216,11 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-muted/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="about" className="py-20 relative" style={{background: 'var(--gradient-secondary)'}}>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5"></div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">About Me</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Passionate developer with strong technical skills and leadership qualities
             </p>
@@ -245,9 +255,9 @@ const Index = () => {
               </div>
             </div>
             
-            <Card>
+            <Card className="backdrop-blur-sm border-primary/20" style={{background: 'var(--gradient-card)', boxShadow: 'var(--shadow-card)'}}>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-4">Quick Facts</h3>
+                <h3 className="text-xl font-semibold mb-4 text-primary">Quick Facts</h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <MapPin className="w-5 h-5 text-primary" />
@@ -292,14 +302,14 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(skills).map(([category, skillList]) => (
-              <Card key={category} className="group hover:shadow-lg transition-all duration-300">
+              <Card key={category} className="group hover:shadow-xl transition-all duration-500 backdrop-blur-sm border-primary/20 hover:border-primary/40" style={{background: 'var(--gradient-card)', boxShadow: 'var(--shadow-card)'}}>
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4 text-primary group-hover:text-primary/80">
+                  <h3 className="text-lg font-semibold mb-4 text-primary group-hover:text-primary/90 transition-colors">
                     {category}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {skillList.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="group-hover:bg-primary/10">
+                      <Badge key={skill} variant="secondary" className="group-hover:bg-primary/20 group-hover:text-primary transition-all">
                         {skill}
                       </Badge>
                     ))}
@@ -312,10 +322,11 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-muted/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="projects" className="py-20 relative" style={{background: 'var(--gradient-secondary)'}}>
+        <div className="absolute inset-0 bg-gradient-to-l from-primary/5 to-accent/5"></div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Featured Projects</h2>
             <p className="text-lg text-muted-foreground">
               Showcasing my development expertise through practical applications
             </p>
@@ -323,7 +334,7 @@ const Index = () => {
           
           <div className="grid lg:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300">
+              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 backdrop-blur-sm border-primary/20 hover:border-primary/40" style={{background: 'var(--gradient-card)', boxShadow: 'var(--shadow-card)'}}>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
@@ -362,11 +373,11 @@ const Index = () => {
                   </div>
                   
                   <div className="flex gap-3 mt-6">
-                    <Button size="sm" className="flex-1">
+                    <Button size="sm" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
                       <ExternalLink className="w-4 h-4 mr-2" />
                       View Project
                     </Button>
-                    <Button size="sm" variant="outline">
+                    <Button size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
                       <Github className="w-4 h-4 mr-2" />
                       Source Code
                     </Button>
@@ -390,7 +401,7 @@ const Index = () => {
           
           <div className="space-y-6">
             {education.map((edu, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+              <Card key={index} className="hover:shadow-xl transition-all duration-500 backdrop-blur-sm border-primary/20 hover:border-primary/40" style={{background: 'var(--gradient-card)', boxShadow: 'var(--shadow-card)'}}>
                 <CardContent className="p-6">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div>
@@ -411,19 +422,20 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-muted/30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-20 relative" style={{background: 'var(--gradient-secondary)'}}>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Get In Touch</h2>
             <p className="text-lg text-muted-foreground">
               Let's discuss opportunities and collaborations
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-12">
-            <Card>
+            <Card className="backdrop-blur-sm border-primary/20" style={{background: 'var(--gradient-card)', boxShadow: 'var(--shadow-card)'}}>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
+                <h3 className="text-xl font-semibold mb-6 text-primary">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -456,14 +468,14 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="mt-8 pt-6 border-t">
-                  <h4 className="font-semibold mb-4">Connect With Me</h4>
+                <div className="mt-8 pt-6 border-t border-primary/20">
+                  <h4 className="font-semibold mb-4 text-primary">Connect With Me</h4>
                   <div className="flex gap-4">
-                    <Button size="sm" variant="outline">
+                    <Button size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
                       <Github className="w-4 h-4 mr-2" />
                       GitHub
                     </Button>
-                    <Button size="sm" variant="outline">
+                    <Button size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/10">
                       <Linkedin className="w-4 h-4 mr-2" />
                       LinkedIn
                     </Button>
@@ -472,9 +484,9 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="backdrop-blur-sm border-primary/20" style={{background: 'var(--gradient-card)', boxShadow: 'var(--shadow-card)'}}>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-6">Send Message</h3>
+                <h3 className="text-xl font-semibold mb-6 text-primary">Send Message</h3>
                 <form className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">Name</label>
@@ -500,7 +512,7 @@ const Index = () => {
                       placeholder="Your message"
                     ></textarea>
                   </div>
-                  <Button className="w-full">Send Message</Button>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold" style={{boxShadow: 'var(--shadow-premium)'}}>Send Message</Button>
                 </form>
               </CardContent>
             </Card>
@@ -509,10 +521,10 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-8">
+      <footer className="bg-card border-t border-primary/20 py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm opacity-80">
-            © 2024 Hemanth Kumar B. All rights reserved.
+          <p className="text-sm text-muted-foreground">
+            © 2024 Hemanth Kumar B. All rights reserved. • Built with premium design & attention to detail.
           </p>
         </div>
       </footer>
